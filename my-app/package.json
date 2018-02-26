@@ -1,0 +1,32 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "antd-mobile": "^2.1.6",
+    "axios": "^0.18.0",
+    "react": "^16.2.0",
+    "react-app-rewired": "^1.4.1",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-app-rewired eject"
+  },
+  "proxy": {
+    "/marketing": {
+      "target": "https://resource.smartisan.com",
+      "changeOrigin": true
+    },
+    "/product": {
+      "target": "https://www.smartisan.com",
+      "changeOrigin": true
+    }
+  },
+  "devDependencies": {
+    "babel-plugin-import": "^1.6.5"
+  }
+}
