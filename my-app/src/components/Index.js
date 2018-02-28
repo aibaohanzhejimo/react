@@ -85,9 +85,10 @@ class App extends Component {
     return (
 
       <div id="box">
-        <header>
-        	
-        </header>
+      <header className="iconfont">
+        	<div>&#xe605;</div>
+        	<div>&#xe82e;</div>
+       </header>
         <section>
            <Carousel autoplay={true} infinite={true}>
                {
