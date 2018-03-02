@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-
 import './index.css';
 import axios from "axios"
 import { Carousel } from 'antd-mobile';
-
+import { NavLink} from 'react-router-dom';
 
 class App extends Component {
 	constructor(props){
@@ -21,6 +20,7 @@ class App extends Component {
 			mask:[],
 			brand:[]
 		}
+		this.goto = this.goto.bind(this);
 
 	}
 	componentDidMount(){
@@ -33,34 +33,20 @@ class App extends Component {
 	         layout:res.data.floors[1].dataList,
 	         hotsell:res.data.floors[3].dataList,
 	         purification:res.data.floors[4].dataList.recommend,
-	         conent:res.data.floors[6].dataList,
 	         proimg:res.data.floors[8].dataList
 	       })
-		 //console.log(this.state.conent)
-		 var arr = this.state.conent
-				var len = arr.length
-				var arrs = [];
-				for(var i=0;i<len;i++){
-					axios.get(`/product/spus?ids=${arr[i].substr(0,7)}`)
-					.then((res)=>{
-						//console.log(res.data.data.list[0])
-						arrs.push(res.data.data.list[0])
-						this.setState({
-							jianguo2:arrs
-						})
-					})
-				}
-				var brr = [];
-			res.data.floors[7].dataList.slice(0,5).forEach(function(item,index,array){
-				//console.log(item.substr(0,7))
-				brr.push(item.substr(0,7))
+			axios.get(`/product/skus?ids=${res.data.floors[6].dataList.slice(0,6).toString()}`)
+			.then((res)=>{
+				console.log(res.data.data.list)
+				this.setState({
+					jianguo2:res.data.data.list
+				})
 			})
-			//console.log(brr.toString())
-			axios.get(`/product/spus?ids=${brr.toString()}`)
+			axios.get(`/product/skus?ids=${res.data.floors[7].dataList.slice(0,5).toString()}`)
 			.then((res)=>{
 				//console.log(res.data.data.list)
 				this.setState({
-					jianguo:res.data.data.list.reverse()
+					jianguo:res.data.data.list
 				})
 			})
 			axios.get(`/product/skus?ids=${res.data.floors[9].dataList.toString()}`)
@@ -72,16 +58,19 @@ class App extends Component {
 			})
 			axios.get(`/product/skus?ids=${res.data.floors[10].dataList.toString()}`)
 			.then((res)=>{
-				console.log(res.data.data.list)
+				//console.log(res.data.data.list)
 				this.setState({
 					brand:res.data.data.list
 				})
 			})
-		})
-			
+		})	
+	}
+	goto(fid){
+		this.props.history.push("/detail/" + fid)
 	}
 
   render() {
+  	var that = this
     return (
 
       <div id="box">
@@ -189,10 +178,10 @@ class App extends Component {
 	       	    {
 	       	    	this.state.jianguo2.map((item,index)=>{
 	       	    		return(
-	       	    			<div key={item.id}>
-	       	    				<img src={item.sku_info[0].ali_image} alt="" width = '100%'/>
-	       	    				<div>{item.name}</div>
-	       	    				<p>{item.sku_info[0].sub_title}</p>
+	       	    			<div key={item.id} onClick={()=>that.goto(item.spu_id)}>
+	       	    				<img src={item.shop_info.ali_image} alt="" width = '100%'/>
+	       	    				<div>{item.shop_info.sku_mobile_title}</div>
+	       	    				<p>{item.shop_info.sku_mobile_sub_title}</p>
 	       	    				<span>￥{item.price}.00</span>
 	       	    			</div>
 	       	    		)
@@ -209,10 +198,10 @@ class App extends Component {
 	       		this.state.jianguo.map((item,index)=>{
 	       			return(
 	       				<li key={item.id} className="box-line">
-	       					<div className="box-item-img"><img src={item.sku_info[0].ali_image} alt="" /></div>
+	       					<div className="box-item-img"><img src={item.shop_info.ali_image} alt="" /></div>
 	       					<div className="box-item-content">
-	       						<h5>{item.shop_info.spu_mobile_title}</h5>
-	       						<p>{item.shop_info.spu_mobile_sub_title}</p>
+	       						<h5>{item.shop_info.sku_mobile_title}</h5>
+	       						<p>{item.shop_info.sku_mobile_sub_title}</p>
 	       						<span>￥{item.price}.00</span>
 	       					</div>
 	       				</li>
@@ -265,6 +254,12 @@ class App extends Component {
 	       	    }
 	       </div>
 	       <div className="foot"></div>
+	       <footer className="iconfont">
+	        	<NavLink exact activeClassName="active" to="/"><span>&#xe66f;</span><i>首页</i></NavLink> 
+	        	<NavLink activeClassName="active" to="/classify"><span>&#xe610;</span><i>分类</i></NavLink>
+	        	<NavLink activeClassName="active" to="/shop"><span>&#xf0178;</span><i>购物车</i></NavLink>
+	        	<NavLink activeClassName="active" to="/person"><span>&#xe645;</span><i>个人中心</i></NavLink>
+	        </footer>
         </section>
       </div>
     );
