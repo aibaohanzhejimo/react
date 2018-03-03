@@ -1,5 +1,5 @@
 .btn{height: .3rem;font-size: .14rem;background: #070707;color: #fff;border: 0;padding: 0 .05rem }
-.shop-title{font-size: .2rem!important; padding-left:22%!important;}
+.shop-title{font-size: .2rem!important; padding-left:0!important;text-align: center;padding-top: .05rem}
 .nav{position: fixed;left: 0;top: .5rem;display: flex;width: 100%;padding: .1rem .1rem;background: #fff}
 .nav li{font-size: .14rem;height: .3rem;width: 25%;line-height: .3rem;text-align: center;border: 1px solid #ccc}
 .nav li:nth-child(1){color: #fff;background: #ccc}
@@ -31,4 +31,20 @@ h3{height: .3rem;
     -webkit-line-clamp: 3;
     overflow: hidden;
 }
-
+.shop-price {
+	color: #d44d44;
+}
+.shop-price span{
+	font-size: .14rem;
+}
+.versions{padding: .1rem}
+.versions h6{font-size: .14rem;color: #999;padding-bottom:.1rem;}
+.versions div{padding-bottom:.1rem;}
+.versions i{font-size: .14rem;font-weight: bolder;}
+.shop-detail{padding: 0}
+.shop-detail h3{margin-left: .2rem}
+.detail-foot {display: flex;justify-content: flex-end;}
+footer button{padding: .1rem .2rem;margin:0 .1rem;border: 0 }
+footer button:nth-child(2){
+	background: linear-gradient(#6e98f4,#4b77ee);color: #fff
+}

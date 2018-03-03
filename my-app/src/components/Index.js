@@ -129,7 +129,7 @@ class App extends Component {
 	       <div className="title-wrapper">
 	         <h2>热销机型</h2> 
 	       </div>
-	       <div className="carousel">
+	       <div className="carousel" onClick={()=>that.goto(1000351)}>
 	       	    <img src="https://resource.smartisan.com/resource/c71ce2297b362f415f1e74d56d867aed.png?x-oss-process=image/resize,w_675/format,webp" alt="" />
 	       	    <div className="carousel-title">坚果 Pro 2</div>
 	       	    <div className="carousel-sub-title"> 漂亮得不像实力派 </div>
@@ -197,7 +197,7 @@ class App extends Component {
 	       	{
 	       		this.state.jianguo.map((item,index)=>{
 	       			return(
-	       				<li key={item.id} className="box-line">
+	       				<li key={item.id} className="box-line" onClick={()=>that.goto(item.spu_id)}>
 	       					<div className="box-item-img"><img src={item.shop_info.ali_image} alt="" /></div>
 	       					<div className="box-item-content">
 	       						<h5>{item.shop_info.sku_mobile_title}</h5>
@@ -224,7 +224,7 @@ class App extends Component {
 	       	    {
 	       	    	this.state.mask.map((item,index)=>{
 	       	    		return(
-	       	    			<div key={item.id}>
+	       	    			<div key={item.id}  onClick={()=>that.goto(item.spu_id)}>
 	       	    				<img src={item.shop_info.ali_image} alt="" width = '100%'/>
 	       	    				<div>{item.shop_info.sku_mobile_title}</div>
 	       	    				<p>{item.shop_info.sku_mobile_sub_title}</p>
@@ -243,7 +243,7 @@ class App extends Component {
 	       	    {
 	       	    	this.state.brand.map((item,index)=>{
 	       	    		return(
-	       	    			<div key={item.id}>
+	       	    			<div key={item.id} onClick={()=>that.goto(item.spu_id)}>
 	       	    				<img src={item.shop_info.ali_image} alt="" width = '100%'/>
 	       	    				<div>{item.shop_info.sku_mobile_title}</div>
 	       	    				<p>{item.shop_info.sku_mobile_sub_title}</p>
