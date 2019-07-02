@@ -5,7 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {createStore,combineReducers} from 'redux';
 
-//创建store
+//创建store，啊啊啊啊
 //reducers负责处理store数据 纯函数
 const reducers = combineReducers({
 	//state当前状态
